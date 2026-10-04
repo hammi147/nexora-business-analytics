@@ -1,0 +1,905 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nexora | Business Analytics</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <aside class="sidebar" id="sidebar">
+
+            <a href="#dashboard" class="brand">
+                NEXORA<span>.</span>
+            </a>
+
+            <p class="menu-label">MAIN MENU</p>
+
+            <nav class="side-nav">
+
+                <a href="#dashboard"
+                   class="nav-link active"
+                   data-page="dashboard">
+                    <span>▦</span>
+                    Dashboard
+                </a>
+
+                <a href="#analytics"
+                   class="nav-link"
+                   data-page="analytics">
+                    <span>◫</span>
+                    Analytics
+                </a>
+
+                <a href="#orders"
+                   class="nav-link"
+                   data-page="orders">
+                    <span>▤</span>
+                    Orders
+                </a>
+
+                <a href="#customers"
+                   class="nav-link"
+                   data-page="customers">
+                    <span>♙</span>
+                    Customers
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <a href="#settings"
+                   class="nav-link"
+                   data-page="settings">
+                    <span>⚙</span>
+                    Settings
+                </a>
+
+                <div class="profile">
+
+                    <div class="avatar">
+                        NH
+                    </div>
+
+                    <div>
+                        <strong>Neil Harper</strong>
+                        <small>Administrator</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+
+        <main class="main-content" id="dashboard">
+
+
+            <!-- ================= TOPBAR ================= -->
+
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <button
+                        class="menu-toggle"
+                        id="menuToggle"
+                        aria-label="Open menu">
+                        ☰
+                    </button>
+
+                    <div>
+
+                        <p class="welcome">
+                            Welcome back, Neil 👋
+                        </p>
+
+                        <small>
+                            Here's what's happening with your business today.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="topbar-actions">
+
+                    <div class="notification-wrapper">
+
+                        <button
+                            class="icon-button"
+                            id="notificationBtn"
+                            aria-label="Notifications">
+                            🔔
+                            <span class="notification-dot"></span>
+                        </button>
+
+                        <div
+                            class="notification-panel"
+                            id="notificationPanel">
+
+                            <div class="notification-header">
+                                <strong>Notifications</strong>
+                                <span>3 new</span>
+                            </div>
+
+                            <div class="notification-item">
+                                <div class="notification-icon purple">
+                                    $
+                                </div>
+
+                                <div>
+                                    <strong>Revenue increased</strong>
+                                    <p>Revenue is up 12.8% this month.</p>
+                                </div>
+                            </div>
+
+                            <div class="notification-item">
+                                <div class="notification-icon blue">
+                                    ✓
+                                </div>
+
+                                <div>
+                                    <strong>New order received</strong>
+                                    <p>Order #NX-10482 was completed.</p>
+                                </div>
+                            </div>
+
+                            <div class="notification-item">
+                                <div class="notification-icon orange">
+                                    !
+                                </div>
+
+                                <div>
+                                    <strong>Pending orders</strong>
+                                    <p>3 orders still need attention.</p>
+                                </div>
+                            </div>
+
+                            <button
+                                class="view-notifications"
+                                id="markNotifications">
+                                Mark all as read
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="top-avatar">
+                        NH
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- ================= DASHBOARD HEADING ================= -->
+
+            <section class="page-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        BUSINESS OVERVIEW
+                    </span>
+
+                    <h1>
+                        Dashboard Overview
+                    </h1>
+
+                    <p>
+                        Track your business performance at a glance.
+                    </p>
+
+                </div>
+
+
+                <div class="date-control">
+
+                    <span>Period</span>
+
+                    <select
+                        id="dateFilter"
+                        aria-label="Date range">
+
+                        <option value="week">
+                            This Week
+                        </option>
+
+                        <option value="month" selected>
+                            This Month
+                        </option>
+
+                        <option value="year">
+                            This Year
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= STATS ================= -->
+
+            <section class="stats-grid">
+
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+
+                        <span>
+                            Total Revenue
+                        </span>
+
+                        <span class="stat-icon purple">
+                            $
+                        </span>
+
+                    </div>
+
+                    <h2 id="revenueValue">
+                        $48,294
+                    </h2>
+
+                    <p
+                        class="growth positive"
+                        id="revenueGrowth">
+                        ↑ 12.8%
+                        <span>vs last period</span>
+                    </p>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+
+                        <span>
+                            Total Orders
+                        </span>
+
+                        <span class="stat-icon blue">
+                            ▤
+                        </span>
+
+                    </div>
+
+                    <h2 id="ordersValue">
+                        1,284
+                    </h2>
+
+                    <p
+                        class="growth positive"
+                        id="ordersGrowth">
+                        ↑ 8.2%
+                        <span>vs last period</span>
+                    </p>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+
+                        <span>
+                            Total Customers
+                        </span>
+
+                        <span class="stat-icon orange">
+                            ♙
+                        </span>
+
+                    </div>
+
+                    <h2 id="customersValue">
+                        8,549
+                    </h2>
+
+                    <p
+                        class="growth positive"
+                        id="customersGrowth">
+                        ↑ 5.4%
+                        <span>vs last period</span>
+                    </p>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-top">
+
+                        <span>
+                            Conversion Rate
+                        </span>
+
+                        <span class="stat-icon green">
+                            %
+                        </span>
+
+                    </div>
+
+                    <h2 id="conversionValue">
+                        4.82%
+                    </h2>
+
+                    <p
+                        class="growth positive"
+                        id="conversionGrowth">
+                        ↑ 1.6%
+                        <span>vs last period</span>
+                    </p>
+
+                </article>
+
+            </section>
+
+
+            <!-- ================= CHARTS ================= -->
+
+            <section class="charts-grid">
+
+
+                <!-- Revenue -->
+
+                <article
+                    class="panel revenue-panel"
+                    id="analytics">
+
+                    <div class="panel-heading">
+
+                        <div>
+
+                            <div class="panel-title-row">
+
+                                <h3>
+                                    Revenue Overview
+                                </h3>
+
+                                <span class="live-indicator">
+                                    <i></i>
+                                    Live
+                                </span>
+
+                            </div>
+
+                            <p>
+                                Revenue performance over time
+                            </p>
+
+                        </div>
+
+                        <span class="panel-tag">
+                            Revenue
+                        </span>
+
+                    </div>
+
+
+                    <div class="chart-container">
+
+                        <canvas
+                            id="revenueChart">
+                        </canvas>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Sales Distribution -->
+
+                <article class="panel">
+
+                    <div class="panel-heading">
+
+                        <div>
+
+                            <h3>
+                                Sales Distribution
+                            </h3>
+
+                            <p>
+                                Orders by category
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="chart-container doughnut-container">
+
+                        <canvas
+                            id="salesChart">
+                        </canvas>
+
+                        <div class="doughnut-center">
+
+                            <strong>
+                                1,284
+                            </strong>
+
+                            <span>
+                                Orders
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="chart-legend">
+
+                        <span>
+                            <i class="dot purple-dot"></i>
+                            Electronics
+                        </span>
+
+                        <span>
+                            <i class="dot blue-dot"></i>
+                            Fashion
+                        </span>
+
+                        <span>
+                            <i class="dot orange-dot"></i>
+                            Home & Living
+                        </span>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- ================= ORDERS ================= -->
+
+            <section
+                class="panel table-panel"
+                id="orders">
+
+                <div class="panel-heading table-heading">
+
+                    <div>
+
+                        <div class="panel-title-row">
+
+                            <h3>
+                                Recent Orders
+                            </h3>
+
+                            <span class="order-count"
+                                  id="orderCountBadge">
+                                10
+                            </span>
+
+                        </div>
+
+                        <p>
+                            Monitor your latest transactions
+                        </p>
+
+                    </div>
+
+
+                    <div class="table-actions">
+
+                        <div class="search-box">
+
+                            <span>⌕</span>
+
+                            <input
+                                type="search"
+                                id="searchInput"
+                                placeholder="Search orders...">
+
+                        </div>
+
+
+                        <select
+                            id="statusFilter"
+                            aria-label="Filter by status">
+
+                            <option value="All">
+                                All Status
+                            </option>
+
+                            <option value="Completed">
+                                Completed
+                            </option>
+
+                            <option value="Pending">
+                                Pending
+                            </option>
+
+                            <option value="Cancelled">
+                                Cancelled
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Order ID
+                                </th>
+
+                                <th>
+                                    Customer
+                                </th>
+
+                                <th>
+                                    Date
+                                </th>
+
+                                <th>
+                                    Amount
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="ordersTable">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="table-footer">
+
+                    <span id="resultCount">
+                        Showing orders
+                    </span>
+
+                    <button
+                        id="resetFilters">
+                        Reset Filters
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= CUSTOMERS ================= -->
+
+            <section
+                class="panel hidden-section"
+                id="customers">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            CUSTOMER INSIGHTS
+                        </span>
+
+                        <h2>
+                            Customer Overview
+                        </h2>
+
+                        <p>
+                            Understand your customer base and engagement.
+                        </p>
+
+                    </div>
+
+                    <span class="section-badge">
+                        Updated today
+                    </span>
+
+                </div>
+
+
+                <div class="customer-grid">
+
+
+                    <div class="customer-summary">
+
+                        <span>
+                            Active Customers
+                        </span>
+
+                        <strong>
+                            6,842
+                        </strong>
+
+                        <small>
+                            ↑ 7.4% this month
+                        </small>
+
+                    </div>
+
+
+                    <div class="customer-summary">
+
+                        <span>
+                            New Customers
+                        </span>
+
+                        <strong>
+                            1,284
+                        </strong>
+
+                        <small>
+                            ↑ 11.2% this month
+                        </small>
+
+                    </div>
+
+
+                    <div class="customer-summary">
+
+                        <span>
+                            Returning Customers
+                        </span>
+
+                        <strong>
+                            3,426
+                        </strong>
+
+                        <small>
+                            ↑ 5.8% this month
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="customer-table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Customer</th>
+                                <th>Orders</th>
+                                <th>Total Spent</th>
+                                <th>Customer Type</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td><strong>Olivia Martin</strong></td>
+                                <td>18</td>
+                                <td>$8,420</td>
+                                <td><span class="customer-type vip">VIP</span></td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Sophia Davis</strong></td>
+                                <td>14</td>
+                                <td>$6,280</td>
+                                <td><span class="customer-type vip">VIP</span></td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>Emma Johnson</strong></td>
+                                <td>9</td>
+                                <td>$3,740</td>
+                                <td><span class="customer-type regular">Regular</span></td>
+                            </tr>
+
+                            <tr>
+                                <td><strong>James Wilson</strong></td>
+                                <td>6</td>
+                                <td>$2,150</td>
+                                <td><span class="customer-type new">New</span></td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= SETTINGS ================= -->
+
+            <section
+                class="panel hidden-section"
+                id="settings">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            PREFERENCES
+                        </span>
+
+                        <h2>
+                            Settings
+                        </h2>
+
+                        <p>
+                            Manage your dashboard preferences.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-list">
+
+
+                    <div class="setting-item">
+
+                        <div>
+
+                            <strong>
+                                Email Notifications
+                            </strong>
+
+                            <p>
+                                Receive updates about orders and revenue.
+                            </p>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="emailNotifications"
+                                checked>
+
+                            <span></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-item">
+
+                        <div>
+
+                            <strong>
+                                Weekly Reports
+                            </strong>
+
+                            <p>
+                                Receive a weekly business performance summary.
+                            </p>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="weeklyReports">
+
+                            <span></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-item">
+
+                        <div>
+
+                            <strong>
+                                Compact Dashboard
+                            </strong>
+
+                            <p>
+                                Reduce spacing for a denser dashboard view.
+                            </p>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                id="compactMode">
+
+                            <span></span>
+
+                        </label>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= FOOTER ================= -->
+
+            <footer class="footer">
+
+                <p>
+                    © 2026 Nexora Analytics.
+                    Demo project with sample data.
+                </p>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- TOAST -->
+
+    <div
+        class="toast"
+        id="toast">
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+```
